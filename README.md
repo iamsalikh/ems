@@ -54,7 +54,11 @@ To install all the necessary Python libraries from the `requirements.txt` file, 
 pip install -r requirements.txt
 ```
 ### Running the Project
-To run the project, use Uvicorn. You'll also need to clone this repository using the following command:
+To run the project, use Uvicorn:
+```bash
+uvicorn main:app --reload
+```
+You'll also need to clone this repository using the following command:
 ```bash
 git clone https://github.com/iamsalikh/education-management-system.git
 ```
