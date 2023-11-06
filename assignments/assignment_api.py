@@ -26,13 +26,11 @@ async def get_all_assignments_of_exact_course():
 
 # получение информации о конкретном задании по его ID
 @assignment_router.get('/get-info-about-exact-assignment')
-async def get_info_about_exact_assignment(assignment_id: int = None):
-    if assignment_id is None:
-        result = get_list_of_assignments_exact_course_db()
-    else:
-        result = get_info_about_exact_assignment_db(assignment_id)
-
-    return {'status': 1, 'message': result}
+async def get_info_about_exact_assignment(assignment_id: int):
+    result = get_info_about_exact_assignment_db(assignment_id)
+    if result:
+        return {'status': 1, 'message': result}
+    return {'status': 0, 'message': 'Задание не найдено'}
 
 
 # Редактирование заданий(изменения описания, дедлайнов)
@@ -42,4 +40,6 @@ async def change_info_of_assignment(assignments_id: int = Body(...),
                                     new_info: str = Body(...)):
     result = change_info_of_assignment_db(assignments_id, info_to_change, new_info)
 
-    return {'status': 1, 'message': result}
+    if result:
+        return {'status': 1, 'message': result}
+    return {'status': 0, 'message': 'Задания не найдена'}

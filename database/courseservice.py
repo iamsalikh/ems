@@ -14,6 +14,9 @@ def create_course_db(name, teacher_id):
 
     new_course = Course(name=name, teacher_id=teacher_id)
 
+    db.add(new_course)
+    db.commit()
+
     return new_course
 
 
@@ -48,8 +51,6 @@ def change_course_name_db(course_id, name):
 
         return course
 
-    return 'Курс по такому ID не найден'
-
 
 # удаление курса
 def delete_course_db(course_id):
@@ -62,5 +63,3 @@ def delete_course_db(course_id):
         db.commit()
 
         return True
-
-    return False

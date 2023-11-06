@@ -53,5 +53,3 @@ def change_info_of_assignment_db(assignment_id: int, info_to_change: str, new_in
         db.commit()
 
         return f'{info_to_change} изменения внесены'
-
-    return 'Задания не найдена'

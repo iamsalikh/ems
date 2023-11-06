@@ -11,8 +11,8 @@ from grades.grade_api import grade_router
 app = FastAPI(docs_url='/')
 
 app.include_router(user_router)
-app.include_router(assignment_router)
 app.include_router(course_router)
+app.include_router(assignment_router)
 app.include_router(grade_router)
 
 
