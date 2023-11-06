@@ -63,3 +63,4 @@ You'll also need to clone this repository using the following command:
 git clone https://github.com/iamsalikh/education-management-system.git
 ```
 
+# education-management-system
