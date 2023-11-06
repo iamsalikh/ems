@@ -12,10 +12,12 @@ def register_user_db(name, surname, phone_number, email, password, city, role):
     if checker:
         return False
 
-    new_user = User(name=name, surname=surname, phone_number=phone_number, password=password, city=city, role=role)
+    new_user = User(name=name, surname=surname, phone_number=phone_number, email=email, password=password, city=city, role=role)
 
     db.add(new_user)
     db.commit()
+
+    return new_user
 
 
 # аутентификация
@@ -29,8 +31,6 @@ def login_user_db(email, password):
             return checker
         elif checker.password != password:
             return "Неверный пароль"
-
-    return 'Ошибка в данных'
 
 
 # получение списка всех пользователей
@@ -58,17 +58,15 @@ def change_user_info_db(user_id: int, info_to_change: str, new_info: str):
     checker = db.query(User).filter_by(id=user_id).first()
 
     if checker:
-        if info_to_change == 'new_password':
+        if info_to_change == 'new password':
             checker.password = new_info
 
-        elif info_to_change == 'new_email':
+        elif info_to_change == 'new email':
             checker.email = new_info
 
-        elif info_to_change == 'new_city':
+        elif info_to_change == 'new city':
             checker.city = new_info
 
         db.commit()
 
         return f'{info_to_change} изменения внесены'
-
-    return 'Пользователь не найден'
